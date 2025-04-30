@@ -1,0 +1,11 @@
+
+#ball {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    background-color: red;
+    border-radius: 100%;
+    aspect-ratio: 1 / 1;
+}
+

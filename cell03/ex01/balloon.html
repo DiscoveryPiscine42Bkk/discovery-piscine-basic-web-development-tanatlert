@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>balloon</title>
+    <link rel="stylesheet" href="balloon.css">
+
+    <script>
+        let color = ['red', 'green', 'blue']
+        let size = 200;
+        let colorIndex = 0;
+
+        function myFunction(mode){
+            if (mode == 1){
+                size += 10;
+                colorIndex++;
+                if (size > 420) {
+                    size = 200;
+                }
+                if (colorIndex > 2) {
+                    colorIndex = 0;
+                }
+            }
+
+            if (mode == 2) {
+                size -= 5;
+                colorIndex--;
+                if(size < 200){
+                    size = 200;
+                }
+                if (colorIndex < 0) {
+                    colorIndex = 2;
+                }
+            }
+            document.getElementById('ball').style.height = size+'px';
+            document.getElementById('ball').style.backgroundColor = color[colorIndex];
+        }
+        function shrink(){
+            size -= 5;
+
+        }
+    </script>
+</head>
+<body>
+    <div id="ball" 
+    type= "button" onclick = "myFunction(1)" onmouseleave="myFunction(2)">
+    </div>
+</body>
+</html>
+
+
