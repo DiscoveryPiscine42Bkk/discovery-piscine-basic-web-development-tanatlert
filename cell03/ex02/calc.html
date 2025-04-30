@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="calc.css">
+    <script>
+
+        function calculate(){
+            var left = parseFloat(document.getElementById('left').value);
+            var right = parseFloat(document.getElementById('right').value);
+            var operator = document.getElementById('Operator').value;
+
+            console.log(right);
+
+            if (isNaN(left) || left < 0 || isNaN(right) || right < 0){
+                result = "Error :()"
+            } else if (operator == '+'){
+                result = left + right;
+            } else if (operator == '-'){
+                result = left - right;
+            } else if (operator == '*'){
+                result = left * right;
+            } else if (operator == '%' && right !=0 ){
+                result = left % right;
+            } else if (operator == '/' && right != 0){
+                result = left / right;
+            } else {
+                result = "It's over 9000!"
+            }
+
+
+            console.log(result);
+            alert(result);
+
+        }
+    </script>
+</head>
+<body>
+    <h1>Calculator</h1>
+    <div class ="textfield" >
+        <input type="text" id="left" left="name" placeholder="Enter Left Value">
+        <select name="Operator" id="Operator">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+            <option value="%">%</option>
+        </select>
+        <input type="number" id="right" left="name" placeholder="Enter Right Value">
+        <input type="submit" value="Try me!" onclick="calculate()">
+    </div>
+</body>
+</html>
