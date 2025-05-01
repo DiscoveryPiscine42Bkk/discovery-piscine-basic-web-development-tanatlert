@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .textfield {
+            display: flex;
+            justify-content: center;
+            margin: auto;
+            margin-top: 100px;
+            height: 50px;
+            width: 500px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 100px;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $("input[type='submit']").on("click", function () {
+                var left = parseFloat($("#left").val());
+                var right = parseFloat($("#right").val());
+                var operator = $("#Operator").val();
+                var result;
+
+                if (isNaN(left) || left < 0 || isNaN(right) || right < 0) {
+                    result = "Error :()";
+                } else if (operator == '+') {
+                    result = left + right;
+                } else if (operator == '-') {
+                    result = left - right;
+                } else if (operator == '*') {
+                    result = left * right;
+                } else if (operator == '%' && right != 0) {
+                    result = left % right;
+                } else if (operator == '/' && right != 0) {
+                    result = left / right;
+                } else {
+                    result = "It's over 9000!";
+                }
+
+                alert(result);
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Calculator</h1>
+    <div class="textfield">
+        <input type="text" id="left" placeholder="Enter Left Value">
+        <select name="Operator" id="Operator">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+            <option value="%">%</option>
+        </select>
+        <input type="number" id="right" placeholder="Enter Right Value">
+        <input type="submit" value="Try me!">
+    </div>
+</body>
+</html>
