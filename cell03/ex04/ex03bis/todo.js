@@ -2,16 +2,22 @@ $(document).ready(function () {
     // Load todos from cookie
     var saved = getCookie("todos");
     if (saved) {
-        var todos = JSON.parse(saved);
-        for (var i = 0; i < todos.length; i++) {
-            addTodo(todos[i]);
+        try {
+            var todos = JSON.parse(saved);
+            for (var i = 0; i < todos.length; i++) {
+                addTodo(todos[i]);
+            }
+        } catch (e) {
+            console.error("Error parsing saved todos:", e);
         }
     }
 
-    // Delete item when clicking the close button
+    // Delete item when clicking the close button with confirmation
     $('#todoList').on('click', '.close', function () {
-        $(this).parent().remove();
-        saveTodos();
+        if (confirm("Are you sure you want to delete this todo?")) {
+            $(this).parent().remove();
+            saveTodos();
+        }
     });
 });
 

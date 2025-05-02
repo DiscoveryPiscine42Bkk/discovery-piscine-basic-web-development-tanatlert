@@ -1,9 +1,13 @@
 window.onload = function () {
     var saved = getCookie("todos");
     if (saved) {
-        var todos = JSON.parse(saved);
-        for (var i = 0; i < todos.length; i++) {
-            addTodo(todos[i]);
+        try {
+            var todos = JSON.parse(saved);
+            for (var i = 0; i < todos.length; i++) {
+                addTodo(todos[i]);
+            }
+        } catch (e) {
+            console.error("Error parsing saved todos:", e);
         }
     }
 };
@@ -34,8 +38,10 @@ function addTodo(text) {
     li.appendChild(span);
 
     span.onclick = function () {
-        li.remove();
-        saveTodos();
+        if (confirm("Are you sure you want to delete this todo?")) {
+            li.remove();
+            saveTodos();
+        }
     };
 
     var list = document.getElementById("todoList");
@@ -60,7 +66,7 @@ function getCookie(name) {
     for (var i = 0; i < cookies.length; i++) {
         var c = cookies[i].trim();
         if (c.indexOf(name + "=") === 0) {
-            return c.substring(name.length + 1, c.length);
+            return c.substring(name.length + 1);
         }
     }
     return null;
